@@ -20,15 +20,19 @@ public class ReviewService {
     private MongoTemplate mongoTemplate;
 
     public Review createReview(String reviewBody, String title) {
-        Review review = new Review(reviewBody); // Create a new review
+        Review review = reviewRepository.insert(new Review(reviewBody)); // Create a new review
 
         // Associate the review with the appropriate resource
-         reviewRepository.insert(review);
+
 
          mongoTemplate.update(Resource.class)
                  //update the resource in the db where the title matches the argument passed in to review by user
                  .matching(Criteria.where("title").is(title))
                  // This is an update definition - updates the database
-                 .apply(new Update().push("reviewIds").value(review));
+                 .apply(new Update().push("reviewIds").value(review))
+                 // make sure we're getting a single resource and updating that
+                 .first();
+
+         return review;
     }
 }

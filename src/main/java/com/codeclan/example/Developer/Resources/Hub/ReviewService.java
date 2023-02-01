@@ -20,6 +20,7 @@ public class ReviewService {
     private MongoTemplate mongoTemplate;
 
     public Review createReview(String reviewBody, String title) {
+
         Review review = reviewRepository.insert(new Review(reviewBody)); // Create a new review
 
         // Associate the review with the appropriate resource

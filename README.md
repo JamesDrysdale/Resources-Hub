@@ -1,5 +1,7 @@
 # Developer Resources Hub
 
+## Description
+
 This app has been created using a Java, Spring Boot back-end, React for the front-end and MongoDB for the database.
 
 The purpose of the app is to serve great developer resources - websites, learning platforms, videos and podcasts, and allow people to leave reviews about their experience.
